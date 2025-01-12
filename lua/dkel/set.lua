@@ -22,7 +22,7 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 
-vim.opt.colorcolumn = "120"
+vim.opt.colorcolumn = "130"
 vim.opt.termguicolors = true
 
 vim.opt.updatetime = 50
