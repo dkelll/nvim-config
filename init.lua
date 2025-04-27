@@ -1,5 +1,4 @@
 require("dkel")
---require("statusline")
 
 vim.filetype.add({
     extension = {
@@ -10,4 +9,5 @@ vim.filetype.add({
         sosl = "sosl",
     },
 })
-
+-- TODO: figure out why I even need this; I thought my shell was sourced already...
+vim.env.PATH = vim.env.PATH .. ":" .. "/usr/local/go/bin"
