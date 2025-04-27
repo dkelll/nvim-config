@@ -1,5 +1,5 @@
 require("dkel")
-require("statusline")
+--require("statusline")
 
 vim.filetype.add({
     extension = {
