@@ -3,7 +3,7 @@ return {
     config = function()
         vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
 
-        local Dkel_Fugitive = vim.api.nvim_create_augroup("ThePrimeagen_Fugitive", {})
+        local Dkel_Fugitive = vim.api.nvim_create_augroup("Dkel_Fugitive", {})
 
         local autocmd = vim.api.nvim_create_autocmd
         autocmd("BufWinEnter", {
