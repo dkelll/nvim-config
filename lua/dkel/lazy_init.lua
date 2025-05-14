@@ -15,4 +15,3 @@ require("lazy").setup({
     spec = "dkel.lazy",
     change_detection = { notify = false }
 })
-
