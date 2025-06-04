@@ -12,6 +12,10 @@ vim.opt.expandtab = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
+--  https://neovim.io/doc/user/usr_27.html#_ignoring-case
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 vim.opt.smartindent = true
 vim.opt.wrap = false
 
@@ -27,7 +31,7 @@ vim.opt.termguicolors = true
 
 vim.opt.updatetime = 50
 
--- Ignore some of the annoying providers that I'll probably never use
+-- Ignore some of the annoying lsp providers that I'll probably never use
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
