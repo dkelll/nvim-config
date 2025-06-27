@@ -21,6 +21,41 @@ return {
             vim.lsp.protocol.make_client_capabilities(),
             cmp_lsp.default_capabilities()
         )
+
+        vim.lsp.config('zls',{
+            capabilities = capabilities,
+            cmd = { 'zls' },
+            on_new_config = function(new_config, new_root_dir)
+                if vim.fn.filereadable(vim.fs.joinpath(new_root_dir, 'zls.json')) ~= 0 then
+                    new_config.cmd = { 'zls', '--config-path', 'zls.json' }
+                end
+            end,
+            filetypes = { 'zig', 'zir' },
+            --root_dir = lspconfig.root_pattern('zls.json', 'build.zig', '.git'),
+            single_file_support = true,
+        })
+        vim.g.zig_fmt_parse_errors = 0
+        vim.g.zig_fmt_autosave = 0
+
+        vim.lsp.config('lua_ls',{
+            capabilities = capabilities,
+            settings = {
+                Lua = {
+                    format = {
+                        enable = true,
+                        defaultConfig = {
+                            indent_style = "space",
+                            indent_size = "2",
+                        }
+                    },
+                    runtime = { version = "Lua 5.1" },
+                    diagnostics = {
+                        globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
+                    }
+                }
+            }
+        })
+
         require("mason").setup()
         require("mason-lspconfig").setup({
             automatic_enable = {
@@ -28,46 +63,6 @@ return {
                 "rust_analyzer",
                 "gopls",
                 "zls"
-            },
-            handlers = {
-                function(server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
-                    }
-                end,
-
-                zls = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.zls.setup({
-                        cmd = { 'zls' },
-                        on_new_config = function(new_config, new_root_dir)
-                            if vim.fn.filereadable(vim.fs.joinpath(new_root_dir, 'zls.json')) ~= 0 then
-                                new_config.cmd = { 'zls', '--config-path', 'zls.json' }
-                            end
-                        end,
-                        filetypes = { 'zig', 'zir' },
-                        root_dir = lspconfig.root_pattern('zls.json', 'build.zig', '.git'),
-                        single_file_support = true,
-                    })
-                    vim.g.zig_fmt_parse_errors = 0
-                    vim.g.zig_fmt_autosave = 0
-
-                end,
-
-                ["lua_ls"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.lua_ls.setup {
-                        capabilities = capabilities,
-                        settings = {
-                            Lua = {
-                                runtime = { version = "Lua 5.1" },
-                                diagnostics = {
-                                    globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
-                                }
-                            }
-                        }
-                    }
-                end,
             }
         })
 
