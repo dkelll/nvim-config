@@ -56,13 +56,18 @@ return {
             }
         })
 
+        vim.lsp.config('elixirls', {
+            capabilities = capabilities,
+            cmd = { '/home/dk/.local/share/nvim/mason/packages/elixir-ls/language_server.sh' };
+        })
+
         require("mason").setup()
         require("mason-lspconfig").setup({
             automatic_enable = {
                 "lua_ls",
-                "rust_analyzer",
                 "gopls",
-                "zls"
+                "zls",
+                "elixirls"
             }
         })
 
