@@ -1,4 +1,8 @@
 return {
+<<<<<<< Updated upstream
+=======
+        enabled = false,
+>>>>>>> Stashed changes
         "sf",
         dir = "~/projects/plugins/sf.nvim",
         dependencies = {
