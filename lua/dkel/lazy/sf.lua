@@ -1,8 +1,5 @@
 return {
-<<<<<<< Updated upstream
-=======
         enabled = false,
->>>>>>> Stashed changes
         "sf",
         dir = "~/Projects/nvim-plugins/telescope-salesforce.nvim",
         dependencies = {
