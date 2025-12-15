@@ -10,6 +10,7 @@ local root_files = {
 }
 
 return {
+    enabled = false,
     "neovim/nvim-lspconfig",
     dependencies = {
         "stevearc/conform.nvim",

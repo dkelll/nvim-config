@@ -43,6 +43,7 @@ return {
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls",
+                "apex_ls",
                 "gopls",
                 "elixirls",
                 "zls"
