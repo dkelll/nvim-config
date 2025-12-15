@@ -63,4 +63,5 @@ vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 vim.g.netrw_list_hide = vim.fn['netrw_gitignore#Hide']()
-
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_node_provider = 0
