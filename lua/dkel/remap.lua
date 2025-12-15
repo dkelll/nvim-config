@@ -39,8 +39,7 @@ vim.keymap.set("n", "<leader>f", function()
     vim.lsp.buf.format()
 end)
 
--- Also stole this from Prime.
-vim.keymap.set("n", "<leader><leader>", function()
+vim.keymap.set("n", "<leader><leader>x", function()
     vim.cmd("so")
 end)
 
