@@ -42,6 +42,5 @@ end)
 vim.keymap.set("n", "<leader><leader>x", function()
     vim.cmd("so")
 end)
-
 -- remove search highlighting
 -- vim.keymap.set("n", "<esc><esc>", "<cmd>silent! nohls<CR>")
