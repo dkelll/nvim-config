@@ -1,10 +1,9 @@
 return {
-        enabled = true,
+        enabled = false,
         "sf",
         dir = "~/plugins/sf.nvim",
         dependencies = {
             "nvim-telescope/telescope.nvim",
-            "nvim-lua/plenary.nvim",
         },
         config = function()
             local sf = require("sf")

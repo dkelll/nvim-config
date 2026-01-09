@@ -1,16 +1,6 @@
-local root_files = {
-  '.luarc.json',
-  '.luarc.jsonc',
-  '.luacheckrc',
-  '.stylua.toml',
-  'stylua.toml',
-  'selene.toml',
-  'selene.yml',
-  '.git',
-}
-
 return {
-    "neovim/nvim-lspconfig",
+    enabled = false,
+    "neovim/nvim-lspconfig1",
     dependencies = {
         "stevearc/conform.nvim",
         "williamboman/mason.nvim",
@@ -26,10 +16,6 @@ return {
     },
 
     config = function()
-        require("conform").setup({
-            formatters_by_ft = {
-            }
-        })
         local cmp = require('cmp')
         local cmp_lsp = require("cmp_nvim_lsp")
         local capabilities = vim.tbl_deep_extend(
@@ -38,7 +24,6 @@ return {
             vim.lsp.protocol.make_client_capabilities(),
             cmp_lsp.default_capabilities())
 
-        require("fidget").setup({})
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
@@ -46,7 +31,8 @@ return {
                 "apex_ls",
                 "gopls",
                 "elixirls",
-                "zls"
+                "zls",
+                "apex_ls"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -99,6 +85,16 @@ return {
                         }
                     }
                 end,
+                -- ["apex_ls"] = function()
+                --     local lspconfig = require("lspconfig")
+                --     lspconfig.apex_ls.setup {
+                --         capabilities = capabilities,
+                --         apex_jar_path = vim.fn.stdpath('data') .. '/mason/share/apex-language-server/apex-jorje-lsp.jar',
+                --         apex_enable_semantic_errors = false, -- Whether to allow Apex Language Server to surface semantic errors
+                --         apex_enable_completion_statistics = false, -- Whether to allow Apex Language Server to collect telemetry on code completion usage
+                --     }
+                --     vim.lsp.enable('apex_ls')
+                -- end,
             }
         })
 
@@ -134,6 +130,12 @@ return {
                 source = "always",
                 header = "",
                 prefix = "",
+            },
+        })
+
+        vim.filetype.add({
+            pattern = {
+                ['.*/*.cls'] = 'apex',
             },
         })
     end

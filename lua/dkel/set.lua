@@ -34,4 +34,4 @@ vim.opt.updatetime = 50
 -- Ignore some of the annoying lsp providers that I'll probably never use
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
-
+vim.g.loaded_node_provider = 0
