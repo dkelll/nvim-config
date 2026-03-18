@@ -1,4 +1,5 @@
 return {
+    enabled = false,
     "mcp_client",
     dir = "~/Projects/nvim_mcpclient", -- local plugin path
     config = function()
