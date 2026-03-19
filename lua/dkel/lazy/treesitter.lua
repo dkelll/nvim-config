@@ -1,79 +1,27 @@
--- Recommended by ChatGPT. Not sure if I want all of this yet
 return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile", "FileType" },
 
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
 
-    opts = {
-      ensure_installed = {
-        "lua",
-        "vim",
-        "vimdoc",
-        "query",
-        "javascript",
-        "rust",
-        "elixir",
-        "apex",
-        "soql",
-        "sosl",
-        "cpp",
-        "zig",
-      },
+    config = function()
+      require('nvim-treesitter').setup()
 
-      sync_install = false,
-      auto_install = true,
+      -- Enable treesitter highlighting for the current buffer and all future buffers
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function(args)
+          pcall(vim.treesitter.start, args.buf)
+        end,
+      })
 
-      highlight = {
-        enable = true,
-      },
-
-      indent = {
-        enable = true,
-      },
-
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "gnn",
-          node_incremental = "grn",
-          scope_incremental = "grc",
-          node_decremental = "grm",
-        },
-      },
-
-      textobjects = {
-        select = {
-          enable = true,
-          lookahead = true,
-
-          keymaps = {
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["ac"] = "@class.outer",
-            ["ic"] = "@class.inner",
-          },
-        },
-
-        move = {
-          enable = true,
-          set_jumps = true,
-
-          goto_next_start = {
-            ["]f"] = "@function.outer",
-            ["]c"] = "@class.outer",
-          },
-
-          goto_previous_start = {
-            ["[f"] = "@function.outer",
-            ["[c"] = "@class.outer",
-          },
-        },
-      },
-    },
+      -- Also start for the current buffer since FileType already fired before this plugin loaded
+      if vim.bo.filetype ~= '' then
+        pcall(vim.treesitter.start, 0)
+      end
+    end,
   },
 }
