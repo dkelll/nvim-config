@@ -87,6 +87,22 @@ autocmd("LspAttach", {
 		vim.keymap.set("n", "[e", function()
 			vim.diagnostic.jump({ count = -1 })
 		end, opts)
+
+		local client = vim.lsp.get_client_by_id(e.data.client_id)
+		if client and client:supports_method("textDocument/documentHighlight") then
+			vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+				buffer = e.buf,
+				callback = function()
+					vim.lsp.buf.document_highlight()
+				end,
+			})
+			vim.api.nvim_create_autocmd("CursorMoved", {
+				buffer = e.buf,
+				callback = function()
+					vim.lsp.buf.clear_references()
+				end,
+			})
+		end
 	end,
 })
 
