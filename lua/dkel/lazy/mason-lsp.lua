@@ -105,6 +105,7 @@ return {
 			},
 		})
 
+		vim.lsp.linked_editing_range.enable()
 		vim.lsp.enable({
 			"lua_ls",
 			"ts_ls",

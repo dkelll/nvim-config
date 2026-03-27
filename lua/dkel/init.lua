@@ -103,6 +103,11 @@ autocmd("LspAttach", {
 				end,
 			})
 		end
+
+		-- Linked editing (edit matching open/close HTML tags simultaneously, Neovim 0.11+)
+		if vim.lsp.buf.linked_editing_range then
+			vim.keymap.set("n", "<leader>vle", vim.lsp.buf.linked_editing_range, opts)
+		end
 	end,
 })
 
