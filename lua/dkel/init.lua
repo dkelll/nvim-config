@@ -21,7 +21,6 @@ end
 
 vim.filetype.add({
 	extension = {
-		templ = "templ",
 		cls = "apex",
 		trigger = "apex",
 		apxc = "apexcode",
@@ -47,11 +46,11 @@ autocmd("TextYankPost", {
 	end,
 })
 
-autocmd({ "BufWritePre" }, {
-	group = DkelGroup,
-	pattern = "*",
-	command = [[%s/\s\+$//e]],
-})
+-- autocmd({ "BufWritePre" }, {
+-- 	group = DkelGroup,
+-- 	pattern = "*",
+-- 	command = [[%s/\s\+$//e]],
+-- })
 
 autocmd("LspAttach", {
 	group = DkelGroup,
