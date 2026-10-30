@@ -113,7 +113,8 @@ return {
 			"rust_analyzer",
 			"yamlls",
 			"zls",
-			"apex_ls",
+			-- "apex_ls",  -- Salesforce JORJE JAR (Mason)
+			"apex_lsp", -- local Rust server (sf-lsp project)
 			"lwc_ls",
 		})
 
